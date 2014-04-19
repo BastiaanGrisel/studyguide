@@ -17,6 +17,7 @@ if (Meteor.isClient) {
   Template.faculties.events = {
     'click a': function() {
       Session.set("Faculty", this.organisatieOnderdeel.organisatieEenheidCode)
+      return false;
     }
   };
 
@@ -42,20 +43,24 @@ if (Meteor.isClient) {
 
   Template.studies.events = {
     'click a': function() {
-      Session.set("Study",this)
+      var courses = _.flatten(collectPropertyValue(this, "vak", [])).sort(function(a,b){ return a.kortenaamNL < b.kortenaamNL})
+      console.log(courses);
+      courses = _.uniq(courses, function(item,key,a){
+        return item.cursusid;
+      });
+
+      Session.set("Courses", courses);
+      return false;
     }
   };
 
   // Courses
   Template.courses.study = function(){
-    return (Session.equals("Study", undefined)) ? null : Session.get("Study").naamNL;
+    return (Session.equals("Courses", undefined)) ? null : Session.get("Study").naamNL;
   }
 
   Template.courses.courses = function(){
-      var study = Session.get("Study");
-
-      // Find all attributes named Vak   
-      console.log(_.flatten(collectPropertyValue(study, "vak", [])))   
+      return Session.get("Courses");
   }
 
   function collectPropertyValue(object, property, result){
