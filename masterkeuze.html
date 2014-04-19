@@ -1,0 +1,36 @@
+<head>
+  <title>Masterkeuze</title>
+</head>
+
+<body>
+  {{>faculties}}
+  {{>studies}}
+  {{>courses}}
+</body>
+
+<template name="faculties">
+  <h1>Faculties</h1>
+  <ul>
+  	{{#each faculties}}
+  		<li><a href="#">{{organisatieOnderdeel.naamNL}} ({{organisatieOnderdeel.organisatieEenheidCode}})</a></li>
+  	{{/each}}
+  </ul>
+</template>
+
+<template name="studies">
+  <h1>Studies ({{faculty}})</h1>
+  <ul>
+  	{{#each studies}}
+  		<li><a href="#">{{naamNL}}</a></li>
+  	{{/each}}
+  </ul>
+</template>
+
+<template name="courses">
+  <h1>Courses</h1>
+  <ul>
+  	{{#each courses}}
+  		<li><a href="#">{{naamNL}}</a></li>
+  	{{/each}}
+  </ul>
+</template>
