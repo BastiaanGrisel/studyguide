@@ -53,11 +53,21 @@ if (Meteor.isClient) {
 
   Template.courses.courses = function(){
       var study = Session.get("Study");
-      if(study !== undefined) {
-        console.log(study.studieprogrammaboom.studieprogramma.studieprogrammaboom.studieprogramma)
+
+      // Find all attributes named Vak   
+      console.log(_.flatten(collectPropertyValue(study, "vak", [])))   
+  }
+
+  function collectPropertyValue(object, property, result){
+    for(attr in object) {
+      if(attr === property) {
+        result.push(object[attr]);
+      } else if(object[attr] !== null && typeof object[attr] === 'object') {
+        collectPropertyValue(object[attr], property, result);
       }
-      // console.log(study.studieprogrammaboom.studieprogramma.studieprogrammaboom.studieprogramma)
-      // return study.studieprogrammaboom.studieprogramma.studieprogrammaboom.studieprogramma;
+    }
+
+    return result;
   }
 
 }
