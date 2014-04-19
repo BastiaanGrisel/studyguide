@@ -3,34 +3,49 @@
 </head>
 
 <body>
-  {{>faculties}}
-  {{>studies}}
-  {{>courses}}
+	<table>
+		<tr>
+			<td>{{>faculties}}</td>
+			<td>{{>studies}}</td>
+			<td>{{>courses}}</td>
+	  	</tr>
+	</table>
 </body>
 
 <template name="faculties">
-  <h1>Faculties</h1>
-  <ul>
+  <table>
   	{{#each faculties}}
-  		<li><a href="#">{{organisatieOnderdeel.naamNL}} ({{organisatieOnderdeel.organisatieEenheidCode}})</a></li>
+  		<tr>
+  			<td>
+  				{{organisatieOnderdeel.organisatieEenheidCode}}
+  			</td>
+  			<td>
+  				<a href="#">{{organisatieOnderdeel.naamNL}}</a>
+  			</td>
+  		</tr>
   	{{/each}}
-  </ul>
+  </table>
 </template>
 
 <template name="studies">
-  <h1>Studies ({{faculty}})</h1>
-  <ul>
+	<table>
   	{{#each studies}}
-  		<li><a href="#">{{naamNL}}</a></li>
+  		<tr>
+  			<td>
+  				<a href="#">{{naamNL}}</a>
+  			</td>
+  		</tr>
   	{{/each}}
-  </ul>
+	</table>
 </template>
 
 <template name="courses">
-  <h1>Courses</h1>
-  <ul>
+  <table>
   	{{#each courses}}
-  		<li><a href="#">{{langenaamNL}} ({{kortenaamNL}})</a></li>
+  		<tr>
+  			<td><a href="http://studiegids.tudelft.nl/a101_displayCourse.do?course_id={{cursusid}}">{{kortenaamNL}}</a></td>
+  			<td>{{langenaamNL}} ({{ects}})</td>
+  		</tr>
   	{{/each}}
-  </ul>
+  </table>
 </template>

@@ -1,3 +1,5 @@
+Favorites = new Meteor.Collection("favorites");
+
 if (Meteor.isClient) {
 
   // Faculties
@@ -44,10 +46,15 @@ if (Meteor.isClient) {
   Template.studies.events = {
     'click a': function() {
       var courses = _.flatten(collectPropertyValue(this, "vak", [])).sort(function(a,b){ return a.kortenaamNL < b.kortenaamNL})
+      
       console.log(courses);
+
       courses = _.uniq(courses, function(item,key,a){
         return item.cursusid;
       });
+
+      // var g = new Gramophone();
+      // console.log("Gramophone", g.extract('beep beep and foo bar and beep beep and beep beep and foo bar'));
 
       Session.set("Courses", courses);
       return false;
