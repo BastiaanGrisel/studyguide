@@ -13,7 +13,7 @@
 </body>
 
 <template name="faculties">
-  <table>
+  <table class="faculties">
   	{{#each faculties}}
   		<tr>
   			<td>
@@ -43,8 +43,7 @@
   <table>
   	{{#each courses}}
   		<tr>
-  			<td><a href="http://studiegids.tudelft.nl/a101_displayCourse.do?course_id={{cursusid}}">{{kortenaamNL}}</a></td>
-  			<td>{{langenaamNL}} ({{ects}})</td>
+  			<td><a href="http://studiegids.tudelft.nl/a101_displayCourse.do?course_id={{cursusid}}">{{langenaamNL}}</a> ({{ects}}, {{kortenaamNL}})</td>
   		</tr>
   	{{/each}}
   </table>
